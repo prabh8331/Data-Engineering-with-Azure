@@ -1,5 +1,5 @@
 # Data Engineering 3.0 with Azure
-
+ 
 Pre-Read Material-
 
 Python
@@ -10,14 +10,16 @@ Docker Fundamentals & Installation-
 https://www.youtube.com/watch?v=jPdIRX6q4jA&list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs
 
 
-Github fundamentals
+Github fundamentals:
 https://youtu.be/8JJ101D3knE
 
-setting up- 
-Install git on windows- 
+Quick setting up:
+
+Install git on windows:
 https://git-scm.com/
 
-open git bash
+```bash
+# open git bash
 
 git config --global user.name "prabh8331"
 git config --global user.email "prabh8331@gmail.com"
@@ -32,6 +34,8 @@ cat id_ed25519.pub (copy)
 go to github>settings>ssh and GPG keys > new ssh key > paste the key
 
 ssh -T git@github.com
+
+```
 
 
 
