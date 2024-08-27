@@ -253,7 +253,111 @@ select * from employee_v1;
 
 -- Commit changes (in cases where autocommit is off)
 COMMIT;
+
+SHOW VARIABLES LIKE 'autocommit';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| autocommit    | ON    |
++---------------+-------+
+1 row in set (0.01 sec)
+
 ```
 
 
-### Integrity constraints
+### Integrity Constraints
+
+Integrity constraints are rules applied to database columns to ensure the accuracy and consistency of the data. These constraints enforce data integrity and help in maintaining the reliability of the database. Below are common integrity constraints used in relational databases:
+
+1. **NOT NULL**: Ensures that a column cannot have a NULL value. This constraint is used when a field must always contain a value.
+
+2. **CHECK**: Ensures that the value in a column satisfies a specific condition. For example, a `CHECK` constraint can be used to ensure that the value of the `salary` column is always greater than 1000.
+
+3. **DEFAULT**: Provides a default value for a column when no value is specified during insertion. For instance, if a `hiring_date` is not provided, the `DEFAULT` constraint can insert a default date like '2021-01-01'.
+
+4. **UNIQUE**: Ensures that all the values in a column are different. It allows only one NULL value unless otherwise specified. While `UNIQUE` allows a single NULL, `PRIMARY KEY` (which also enforces uniqueness) does not allow NULL values.
+
+5. **PRIMARY KEY**: Uniquely identifies each row in a table. A column with a `PRIMARY KEY` constraint cannot have NULL values and must contain unique values. Typically, it combines `UNIQUE` and `NOT NULL`.
+
+6. **FOREIGN KEY**: Ensures referential integrity by enforcing a link between the data in two tables. A `FOREIGN KEY` in one table points to a `PRIMARY KEY` in another table, ensuring that the relationship between the tables is maintained.
+
+### Practical Examples of Integrity Constraints
+
+```sql
+
+use noob_db;
+
+drop table noob_db.employee_with_constraints;
+
+--- Example table for integrity constraints
+CREATE TABLE if not EXISTS employee_with_constraints
+(
+	id INT,
+    name VARCHAR(50) NOT NULL,
+    salary DOUBLE, 
+    hiring_date DATE DEFAULT '2021-01-01',
+    UNIQUE (id),
+    CHECK (salary > 1000)
+);
+
+
+--- Example 1 for IC failure
+--- Exception - Column 'name' cannot be null
+insert into employee_with_constraints values(1,null,3000,'2021-11-20');
+
+--- Correct record
+insert into employee_with_constraints values(1,'Shashank',3000,'2021-11-20');
+
+--- Example 2 for IC failure
+--- Exception - Duplicate entry '1' for key 'employee_with_constraints.id'
+insert into employee_with_constraints values(1,'Rahul',5000,'2021-10-23');
+
+--- Another correct record because Unique can accept NULL as well
+insert into employee_with_constraints 
+values(null,'Rahul',5000,'2021-10-23');
+
+--- Example 3 for IC failure
+-- This should fail according to the SQL standard, but MySQL allows multiple NULLs in UNIQUE constraints.
+-- This behavior is specific to MySQL and should be noted during debugging.
+insert into employee_with_constraints 
+values(null,'Rajat',2000,'2020-09-20');
+
+select * from employee_with_constraints;
+
+--- Example 4 for IC failure
+--- Exception - Check constraint 'employee_with_constraints_chk_1' is violated
+-- in above error message it is difficult to debug, so when defining the schema give names to the IC
+-- Note: The error message might not be descriptive, making it difficult to debug. 
+insert into employee_with_constraints 
+values(5,'Amit',500,'2023-10-24');
+
+
+--- Test IC for default date
+insert into employee_with_constraints(id,name,salary)
+values(7,'Neeraj',3000);
+
+
+select * from employee_with_constraints;
+
+
+--- Example table for integrity constraints
+-- Naming constraints helps in identifying and debugging errors more easily when a constraint is violated.
+CREATE TABLE if not EXISTS employee_with_constraints_tmp
+(
+	id INT,
+    name VARCHAR(50) NOT NULL,
+    salary DOUBLE, 
+    hiring_date DATE DEFAULT '2021-01-01',
+    Constraint unique_emp_id UNIQUE (id),
+    Constraint salary_check CHECK (salary > 1000)
+);
+
+--- Check the name of constraint when it fails
+--- Exception - Check constraint 'salary_check' is violated
+-- here it is better to debug
+-- Naming the constraint makes this error message more informative and easier to debug.
+insert into employee_with_constraints_tmp 
+values(5,'Amit',500,'2023-10-24');
+
+```
+
