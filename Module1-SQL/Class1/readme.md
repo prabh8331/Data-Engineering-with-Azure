@@ -68,6 +68,8 @@ Row-Level Locking: Locks individual rows, allowing more concurrent operations.
 Table-Level Locking: Locks the entire table, preventing access by other transactions, which is less flexible.
 
 
+TODO: see how concurancy control happens
+
 4. **Durability**:
     - Once a transaction is committed, the changes are permanent, even in the event of a system crash.
     - Changes are often stored in a Write-Ahead Log (WAL), ensuring recovery in case of a failure before final changes are written.

@@ -44,7 +44,45 @@ https://youtu.be/8JJ101D3knE
 
 
 
+
+what interview qns others are getting:
+
 basic DSA is required from Leetcode
 
-
 incremental data refresh in snowflacks and databricks
+
+SQL-
+window's functions
+common table expressions
+how to create funciotn in SQL
+stored proceedures - know the thoury
+views
+indexing
+itterative and recursive (CTE)
+
+kuberneeties are more part of Devops
+
+
+nosql don't support ACID property
+nosql we would want consisitcy 
+nosql is best trafic , scalibility, parallel , analytical query
+
+
+python - pandas, (numpy not required)
+DSA (leetcode - 2 qns everyday)
+system design is not needed but basic of datapipeline is needed
+Scala
+
+
+tockenization in oracle stream?
+
+How to practice SQL
+1. leetcode 
+2. search case study in github
+
+Azure fibric
+
+DP203 certificate
+
+after course can cover devops part
+
