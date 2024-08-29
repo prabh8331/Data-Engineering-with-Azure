@@ -1,19 +1,19 @@
+
 # SQL: Class 2
 
 ## DDL (Data Definition Language) Commands
 
-DDL commands are used to define or alter the structure of the database objects such as tables.
+DDL commands are used to define or alter the structure of database objects such as tables.
 
 ### 1. Creating and Using a Database
 ```sql
 CREATE DATABASE class2_db;
-
 USE class2_db;
 ```
 
 ### 2. Creating a Table
 ```sql
-CREATE TABLE IF NOT EXISTS employee(
+CREATE TABLE IF NOT EXISTS employee (
     id INT,
     name VARCHAR(50),
     address VARCHAR(50),
@@ -24,41 +24,89 @@ CREATE TABLE IF NOT EXISTS employee(
 ### 3. Inserting Data into the Table
 ```sql
 INSERT INTO employee VALUES(1, 'Shashank', 'RJPM', 'Lucknow');
-
 SELECT * FROM employee;
 ```
 
-### 4. Adding a New Column to the Table
-To add a new column named `DOB` to the `employee` table:
+### 4. Modifying the Table Structure
+
+- **Adding a New Column**
+  ```sql
+  ALTER TABLE employee ADD DOB DATE;
+  ```
+
+- **Modifying an Existing Column**
+  ```sql
+  ALTER TABLE employee MODIFY COLUMN address VARCHAR(100);
+  ```
+
+- **Deleting a Column**
+  ```sql
+  ALTER TABLE employee DROP COLUMN city;
+  ```
+
+- **Renaming a Column**
+  ```sql
+  ALTER TABLE employee RENAME COLUMN name TO full_name;
+  ```
+
+- **Invistagate Table**
 ```sql
-ALTER TABLE employee ADD DOB DATE;
 
 SELECT * FROM employee;
-```
-
-### 5. Modifying an Existing Column
-To modify the existing column `address` by changing its datatype or increasing the length:
-```sql
-ALTER TABLE employee MODIFY COLUMN address VARCHAR(100);
-
 SHOW CREATE TABLE employee;
+
 ```
 
-### 6. Deleting a Column from the Table
-To remove the `city` column from the `employee` table:
+
+### 5. Working with Constraints
+
+- **Adding a Unique Constraint**
+  ```sql
+  ALTER TABLE employee ADD CONSTRAINT id_unique UNIQUE(id);
+
+  -- this follwoing will not run as id =1 is there
+  insert into employee values(1,'Rahul','RJPM' , 'Gurgaon');
+
+  ```
+
+- **Dropping a Unique Constraint**
+  ```sql
+  ALTER TABLE employee DROP CONSTRAINT id_unique;
+
+  -- now this will run as constraint is removed
+  insert into employee values(1,'Rahul','RJPM' , 'Gurgaon');
+  ```
+
+## DML (Data Manipulation Language) Commands
+
+### 6. Inserting Data
 ```sql
-ALTER TABLE employee DROP COLUMN city;
-
-SELECT * FROM employee;
+INSERT INTO employee VALUES(1, 'Shashank', 'Lucknow', '2012-02-02');
 ```
 
-### 7. Renaming a Column
-To rename the column `name` to `full_name`:
-```sql
-ALTER TABLE employee RENAME COLUMN name TO full_name;
-```
+### 7. Deleting Data
 
-## DDL Commands Impacting Table Structure
+- **Deleting a Specific Row**
+
+To delete a specific row where `id = 1`:
+  ```sql
+  DELETE FROM employee WHERE id=1;
+  ```
+
+- **Truncating a Table**
+ 
+To remove all data from the `employee` table but retain the structure:
+  ```sql
+  TRUNCATE TABLE employee;
+  ```
+
+- **Dropping a Table**
+
+To completely remove the `employee` table from the database:
+  ```sql
+  DROP TABLE employee;
+  ```
+
 
 ### Differences Between `DROP`, `TRUNCATE`, and `DELETE`
 
@@ -74,37 +122,92 @@ ALTER TABLE employee RENAME COLUMN name TO full_name;
 
 
 
-### 8. Truncating the Table
-To remove all data from the `employee` table but retain the structure:
-```sql
-TRUNCATE TABLE employee;
+## Primary Key and Foreign Key
 
-SELECT * FROM employee;
+### Primary Key
 
-SHOW CREATE TABLE employee;
-```
+A primary key is a unique identifier for a record in a table, ensuring that each record can be uniquely identified.
 
-### 9. Re-inserting Data into the Table
-```sql
-INSERT INTO employee VALUES(1, 'Shashank', 'Lucknow', '2012-02-02');
+- **Example of Creating a Table with a Primary Key**
+  ```sql
+  CREATE TABLE persons (
+      id INT,
+      name VARCHAR(50),
+      age INT,
+      CONSTRAINT pk PRIMARY KEY (id)
+  );
+  ```
 
-SELECT * FROM employee;
-```
+- **Inserting Data into the Table**
+  ```sql
+  INSERT INTO persons VALUES(1, 'Shashank', 29);
+  ```
 
-### 10. Deleting a Specific Row from the Table
-To delete a specific row where `id = 1`:
-```sql
-DELETE FROM employee WHERE id=1;
-```
+- **Handling Errors with Primary Keys**
+  - **Duplicate Entry Error**
+    ```sql
+    INSERT INTO persons VALUES(1, 'Rahul', 28);
+    -- Error: Duplicate entry '1' for key 'persons.PRIMARY'
+    ```
+  - **Null Value Error**
+    ```sql
+    INSERT INTO persons VALUES(NULL, 'Rahul', 28);
+    -- Error: Column 'id' cannot be null
+    ```
 
-### 11. Dropping the Table
-To completely remove the `employee` table from the database:
-```sql
-DROP TABLE employee;
+### Unique Constraint
 
-SELECT * FROM employee;
--- Error: Table 'class2_db.employee' doesn't exist
-```
+A unique constraint ensures that all values in a column are distinct.
+
+- **Adding a Unique Constraint**
+  ```sql
+  ALTER TABLE persons ADD CONSTRAINT age_unq UNIQUE(age);
+  ```
+
+- **Testing the Unique Constraint**
+  ```sql
+  INSERT INTO persons VALUES(2, 'Rahul', 28);
+  INSERT INTO persons VALUES(3, 'Amit', 28);  -- Error: Duplicate entry
+  INSERT INTO persons VALUES(3, 'Amit', NULL);  -- Allows NULL values
+  ```
+
+### Foreign Key
+
+A foreign key is a column in one table that references the primary key in another table, maintaining referential integrity.
+
+- **Creating Tables with a Foreign Key**
+  ```sql
+  CREATE TABLE customer (
+      cust_id INT,
+      name VARCHAR(50),
+      age INT,
+      CONSTRAINT pk PRIMARY KEY (cust_id)
+  );
+
+  CREATE TABLE orders (
+      order_id INT,
+      order_num INT,
+      customer_id INT,
+      CONSTRAINT pk PRIMARY KEY (order_id),
+      CONSTRAINT fk FOREIGN KEY (customer_id) REFERENCES customer(cust_id)
+  );
+  ```
+
+- **Inserting Data with Referential Integrity**
+  ```sql
+  INSERT INTO customer VALUES(1, 'Shashank', 29);
+  INSERT INTO customer VALUES(2, 'Rahul', 30);
+
+  INSERT INTO orders VALUES(1001, 20, 1);
+  INSERT INTO orders VALUES(1002, 30, 2);
+  ```
+
+- **Handling Foreign Key Violations**
+  ```sql
+  INSERT INTO orders VALUES(1004, 35, 5);
+  -- Error: Cannot add or update a child row: a foreign key constraint fails
+  -- It will not allow to insert because referncial integrity will violate
+  ```
 
 
 ## Primary key and Foreign key
@@ -188,137 +291,4 @@ A foreign key is a column (or set of columns) in one table that refers to the pr
 | 105             | Eva               | Finance            | 1986-05-09    |
 
 In this combined view, the relationship between employees and their respective departments is clearly shown through the use of the foreign key `dep_id`.
-
-
-
-
-
-
-
-create table if not exists employee(
-    id int,
-    name VARCHAR(50),
-    age int,
-    hiring_date date,
-    salary int,
-    city varchar(50)
-);
-
-insert into employee values(1,'Shashank', 24, '2021-08-10', 10000, 'Lucknow');
-
-insert into employee values(2,'Rahul', 25, '2021-08-10', 20000, 'Khajuraho');
-
-insert into employee values(3,'Sunny', 22, '2021-08-11', 11000, 'Banaglore');
-
-insert into employee values(5,'Amit', 25, '2021-08-11', 12000, 'Noida');
-
-insert into employee values(6,'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
-
-SELECT * from employee;
-
---- add unique integrity constraint on id COLUMN
-alter table employee add constraint id_unique UNIQUE(id);
-
--- will not run
-insert into employee values(1,'XYZ', 25, '2021-08-10', 50000, 'Gurgaon');
-
---- drop constraint from existing TABLE
-alter table employee drop constraint id_unique;
-
--- now will run
-insert into employee values(1,'XYZ', 25, '2021-08-10', 50000, 'Gurgaon');
-
-
-
-
-
---- create table with Primary_Key
-
-Create table persons
-(
-    id int, 
-    name varchar(50), 
-    age int,
-    -- Primary Key (id) 
-    constraint pk Primary Key (id) 
-);
-
-insert into persons values(1,'Shashank',29);
-
---- Try to insert duplicate value for primary key COLUMN
-insert into persons values(1,'Rahul',28);
--- Error: Duplicate entry '1' for key 'persons.PRIMARY'
-
-
---- Try to insert null value for primary key COLUMN
-insert into persons values(null,'Rahul',28);
--- Error: Column 'id' cannot be null
-
-
---- To check difference between Primary Key and Unique
-alter table persons add constraint age_unq UNIQUE(age); 
-
-select * from persons;
-
-
-insert into persons values(2,'Rahul',28);
-
-
-insert into persons values(3,'Amit',28);
-
-insert into persons values(3,'Amit',null);
-
-select * from persons;
-
-insert into persons values(4,'Charan',null);
-
-insert into persons values(5,'Deepak',null);
-
-
-
-
---- create tables for Foreign Key demo
-create table customer
-(
-    cust_id int,
-    name VARCHAR(50), 
-    age int,
-    constraint pk Primary Key (cust_id) 
-);
-
-create table orders
-(
-    order_id int,
-    order_num int,
-    customer_id int,
-    constraint pk Primary Key (order_id),
-    constraint fk Foreign Key (customer_id) REFERENCES customer(cust_id)
-);
--- this referential integrity will ensure the data consistiency 
-
-insert into customer values(1,"Shashank",29);
-insert into customer values(2,"Rahul",30);
-
-select * from customer;
-
-insert into orders values(1001, 20, 1);
-insert into orders values(1002, 30, 2);
-insert into orders values(1003, 30, 2);
-
-select * from orders;
-
---- It will not allow to insert because referncial integrity will violate
-insert into orders values(1004, 35, 5);
--- Error: Cannot add or update a child row: a foreign key constraint fails (class2_db.orders, CONSTRAINT fk FOREIGN KEY (customer_id) REFERENCES customer (cust_id))
-
---- Differen between Drop & Truncate Command
-
-select * from persons;
-truncate table persons;
-
-select * from persons;
-drop table persons;
-
-
-
 
