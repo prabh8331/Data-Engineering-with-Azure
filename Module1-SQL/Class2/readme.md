@@ -200,6 +200,7 @@ A foreign key is a column in one table that references the primary key in anothe
 
   INSERT INTO orders VALUES(1001, 20, 1);
   INSERT INTO orders VALUES(1002, 30, 2);
+  insert into orders values(1003, 30, 2);
   ```
 
 - **Handling Foreign Key Violations**
@@ -207,6 +208,13 @@ A foreign key is a column in one table that references the primary key in anothe
   INSERT INTO orders VALUES(1004, 35, 5);
   -- Error: Cannot add or update a child row: a foreign key constraint fails
   -- It will not allow to insert because referncial integrity will violate
+
+  drop table customer;
+  -- this will not work as customer table is reference used in order table, 
+  -- so first remove the reference using alter command then drop table 
+
+  -- if try to delete some values from customer then that value should not be preseint in order to get deleted
+
   ```
 
 
@@ -292,3 +300,12 @@ A foreign key is a column (or set of columns) in one table that refers to the pr
 
 In this combined view, the relationship between employees and their respective departments is clearly shown through the use of the foreign key `dep_id`.
 
+
+
+## DQL (Data Query Language)
+
+```sql
+
+
+
+```

@@ -185,6 +185,7 @@ drop table persons;
 
 
 --- Operations with Select Command
+use class2_db; w
 
 select * from employee;
 
@@ -216,7 +217,8 @@ select * from employee;
 
 --- how to count total records
 select count(*) from employee;
-
+select count(1) from employee;
+-- both don't have any difference in profermance or anything, * or 1 is just a marker
 
 --- alias declaration
 select count(*) as total_row_count from employee;
@@ -257,6 +259,12 @@ FROM employee;
 -- Syntax for update command
 select * from employee;
 
+
+
+
+
+
+
 --- Upadtes will be made for all rows
 UPDATE employee SET age = 20;
 
@@ -273,6 +281,8 @@ select * from employee;
 
 --- How to filter data using WHERE Clauses
 select * from employee where hiring_date = '2021-08-10';
+select * from employee where salary > 2000;
+
 
 
 select * from employee;
@@ -372,6 +382,10 @@ select * from employee where hiring_date = '2021-08-11' and salary<11500;
 -- find those employees who joined the company after 2021-08-11 or  their salary is less than 20000
 select * from employee where hiring_date > '2021-08-11' or salary<20000;
 
+-- short circuting in SQL, in or if first condition is staisfied then will not go to next test
+-- and if and condition failed in starting then it will not go next test
+
+
 -- how to use Between operation in where clause
 -- get all employees data who joined the company between hiring_date 2021-08-05 to 2021-08-11
 select * from employee where hiring_date between '2021-08-05' and '2021-08-11';
@@ -427,7 +441,7 @@ INSERT INTO sales (salesperson, product, quantity, price_per_unit, sale_date) VA
 
 DELIMITER $$
 
-CREATE FUNCTION calculate_total_revenue(salesperson_name VARCHAR(100)) 
+CREATE FUNCTION calculate_total_revenue1(salesperson_name VARCHAR(100)) 
 RETURNS DECIMAL(10, 2)
 DETERMINISTIC
 BEGIN
@@ -447,3 +461,5 @@ SELECT
     calculate_total_revenue(salesperson) AS total_revenue
 FROM 
     sales;
+
+
