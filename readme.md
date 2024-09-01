@@ -40,11 +40,29 @@ ssh -T git@github.com
 2. Windows with Linux
 
 ```bash
+# windows ssh setup 
+# -- ubuntu server part 
+cd ~/.ssh
+ssh-keygen -t ed25519
+     name the key as windows
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/windows
+
+cat windows.pub (copy key from here)
+nano authorized_keys (paste here)
+
+# windows part 
+--- now copy this "windows" (privte key to "C:\Users\Komalpreet Kaur\.ssh" location)
+or open vscode and edit ssh config file (which is in location "C:\Users\Komalpreet Kaur.ssh\config")
+
+Host ubuntu_server
+  HostName 192.168.1.111
+  User userver
+  IdentityFile "C:\Users\Komalpreet Kaur\.ssh\windows"
+
 
 
 ```
-
-
 
 
 
