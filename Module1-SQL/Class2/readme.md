@@ -304,8 +304,254 @@ In this combined view, the relationship between employees and their respective d
 
 ## DQL (Data Query Language)
 
-```sql
+### Operations with `SELECT` Command
 
+1. **Select Database and Table:**
+   ```sql
+   USE class2_db;
+   SELECT * FROM employee;
+   ```
 
+2. **Drop and Create Table:**
+   ```sql
+   DROP TABLE IF EXISTS employee;
 
-```
+   CREATE TABLE employee (
+       id INT,
+       name VARCHAR(50),
+       age INT,
+       hiring_date DATE,
+       salary INT,
+       city VARCHAR(50)
+   );
+   ```
+
+3. **Insert Data:**
+   ```sql
+   INSERT INTO employee VALUES
+   (1, 'Shashank', 24, '2021-08-10', 10000, 'Lucknow'),
+   (2, 'Rahul', 25, '2021-08-10', 20000, 'Khajuraho'),
+   (3, 'Sunny', 22, '2021-08-11', 11000, 'Bangalore'),
+   (5, 'Amit', 25, '2021-08-11', 12000, 'Noida'),
+   (1, 'Puneet', 26, '2021-08-12', 50000, 'Gurgaon');
+   ```
+
+4. **Count Total Records:**
+   ```sql
+   SELECT COUNT(*) FROM employee;
+   SELECT COUNT(1) FROM employee;  -- * or 1 is just a marker
+   ```
+
+5. **Alias Declaration:**
+   ```sql
+   SELECT COUNT(*) AS total_row_count FROM employee;
+   ```
+
+6. **Display Specific Columns:**
+   ```sql
+   SELECT name, salary FROM employee;
+   ```
+
+7. **Column Aliases:**
+   ```sql
+   SELECT name AS employee_name, salary AS employee_salary FROM employee;
+   ```
+
+8. **Unique Hiring Dates:**
+   ```sql
+   SELECT DISTINCT(hiring_date) AS distinct_hiring_dates FROM employee;
+   ```
+
+9. **Count Unique Age Values:**
+   ```sql
+   SELECT COUNT(DISTINCT(age)) AS total_unique_ages FROM employee;
+   ```
+
+10. **Increment Salary by 20%:**
+    ```sql
+    SELECT id, name, salary AS old_salary, (salary + salary * 0.2) AS new_salary FROM employee;
+    ```
+
+### Update Command
+
+1. **Update All Rows:**
+   ```sql
+   UPDATE employee SET age = 20;
+   ```
+
+2. **Update Salary by 20%:**
+   ```sql
+   UPDATE employee SET salary = salary + salary * 0.2;
+   ```
+
+3. **Update Multiple Columns:**
+   ```sql
+   UPDATE employee SET salary = salary + salary * 0.2, age = 25;
+   ```
+
+### Filter Data Using `WHERE` Clauses
+
+1. **Filter by Hiring Date:**
+   ```sql
+   SELECT * FROM employee WHERE hiring_date = '2021-08-10';
+   ```
+
+2. **Filter by Salary:**
+   ```sql
+   SELECT * FROM employee WHERE salary > 20000;
+   ```
+
+3. **Update Salary for Specific Date:**
+   ```sql
+   UPDATE employee SET salary = 80000 WHERE hiring_date = '2021-08-10';
+   ```
+
+### Delete Specific Records
+
+1. **Delete by Hiring Date:**
+   ```sql
+   DELETE FROM employee WHERE hiring_date = '2021-08-10';
+   ```
+
+### Auto Increment
+
+1. **Create Table with Auto Increment:**
+   ```sql
+   CREATE TABLE auto_inc_exmp (
+       id INT AUTO_INCREMENT,
+       name VARCHAR(20),
+       PRIMARY KEY (id)
+   );
+
+   INSERT INTO auto_inc_exmp(name) VALUES('Shashank'), ('Rahul'), ('Nikhil');
+   insert into auto_inc_exmp(id,name) values(5,'Amit');
+   insert into auto_inc_exmp(name) values('Nihal');
+   ```
+
+### Use of `LIMIT`
+
+1. **Limit Results:**
+   ```sql
+   SELECT * FROM employee LIMIT 2;
+   ```
+
+### Sorting Data with `ORDER BY`
+
+1. **Ascending Order:**
+   ```sql
+   SELECT * FROM employee ORDER BY name;
+   ```
+
+2. **Descending Order:**
+   ```sql
+   SELECT * FROM employee ORDER BY name DESC;
+   ```
+
+3. **Multi-Level Sorting:**
+   ```sql
+   SELECT * FROM employee ORDER BY salary DESC, name ASC;
+   ```
+
+4. **Find Employee with Max/Min Salary:**
+   ```sql
+   SELECT * FROM employee ORDER BY salary DESC LIMIT 1;  -- Max salary
+   SELECT * FROM employee ORDER BY salary ASC LIMIT 1;   -- Min salary
+   ```
+
+### Conditional and Logical Operators
+
+1. **Filter by Salary Range:**
+   ```sql
+   SELECT * FROM employee WHERE salary > 20000;
+   SELECT * FROM employee WHERE salary >= 20000;
+   SELECT * FROM employee WHERE salary < 20000;
+   SELECT * FROM employee WHERE salary <= 20000;
+   ```
+
+2. **Filter by Age:**
+   ```sql
+   SELECT * FROM employee WHERE age = 20;
+   SELECT * FROM employee WHERE age != 20;  -- or use <>
+   ```
+
+3. **Filter by Date and Salary:**
+   ```sql
+   SELECT * FROM employee WHERE hiring_date = '2021-08-11' AND salary < 11500;
+   SELECT * FROM employee WHERE hiring_date > '2021-08-11' OR salary < 20000;
+   --  Short-circuiting in SQL occurs when the evaluation of logical conditions (`AND`, `OR`) stops as soon as the result is determined. In an `AND` operation, if any condition is `FALSE`, the rest are ignored since the entire expression will be `FALSE`. Similarly, in an `OR` operation, if any condition is `TRUE`, the remaining conditions are skipped as the whole expression will already be `TRUE`. This improves query efficiency by avoiding unnecessary condition checks.
+   ```
+
+### `BETWEEN` and `LIKE` Operations
+
+1. **Filter by Date Range:**
+   ```sql
+   SELECT * FROM employee WHERE hiring_date BETWEEN '2021-08-05' AND '2021-08-11';
+   ```
+
+2. **Filter by Salary Range:**
+   ```sql
+   SELECT * FROM employee WHERE salary BETWEEN 10000 AND 28000;
+   ```
+
+3. **Using `LIKE` for Pattern Matching:**
+   ```sql
+   SELECT * FROM employee WHERE name LIKE 'S%';     -- Starts with 'S'
+   SELECT * FROM employee WHERE name LIKE 'Sh%';    -- Starts with 'Sh'
+   SELECT * FROM employee WHERE name LIKE '%l';     -- Ends with 'l'
+   SELECT * FROM employee WHERE name LIKE 'S%k';    -- Starts with 'S' and ends with 'k'
+   SELECT * FROM employee WHERE name LIKE '_____';  -- Exactly 5 characters
+   SELECT * FROM employee WHERE name LIKE '%_____'; -- At least 5 characters can also use '_____%' or '%_____%'
+   ```
+
+### MySQL Functions
+
+1. **Create a Table for Sales Data:**
+   ```sql
+   CREATE TABLE sales (
+       sale_id INT AUTO_INCREMENT PRIMARY KEY,
+       salesperson VARCHAR(100),
+       product VARCHAR(100),
+       quantity INT,
+       price_per_unit DECIMAL(10, 2),
+       sale_date DATE
+   );
+
+   INSERT INTO sales (salesperson, product, quantity, price_per_unit, sale_date) VALUES
+   ('Alice', 'Laptop', 5, 1000.00, '2024-05-01'),
+   ('Bob', 'Smartphone', 10, 600.00, '2024-05-02'),
+   ('Alice', 'Tablet', 7, 300.00, '2024-05-03'),
+   ('Charlie', 'Smartwatch', 6, 200.00, '2024-05-04'),
+   ('Bob', 'Laptop', 3, 1000.00, '2024-05-05'),
+   ('Alice', 'Smartphone', 8, 600.00, '2024-05-06');
+   ```
+
+2. **Create and Use a Function:**
+   ```sql
+   DELIMITER $$
+
+   CREATE FUNCTION calculate_total_revenue(salesperson_name VARCHAR(100)) 
+   RETURNS DECIMAL(10, 2)
+   DETERMINISTIC
+   BEGIN
+       DECLARE total_revenue DECIMAL(10, 2);
+       
+       SELECT SUM(quantity * price_per_unit) INTO total_revenue
+       FROM sales
+       WHERE salesperson = salesperson_name;
+       
+       RETURN total_revenue;
+   END $$
+
+   DELIMITER ;
+
+    -- The function `calculate_total_revenue` takes a `salesperson_name` parameter of type `VARCHAR(100)` and returns a `DECIMAL(10,2)`. 
+    -- Inside the function, a `DECIMAL(10,2)` variable is created and assigned a value using the `INTO` keyword. 
+    -- The function then returns this `total_revenue` value.
+
+   
+   SELECT DISTINCT salesperson, calculate_total_revenue(salesperson) AS total_revenue FROM sales;
+   ```
+
+  In SQL, DETERMINISTIC means the function always returns the same result for the same input, allowing the database to optimize performance by caching the result.
+
+  **`NOT DETERMINISTIC`** means the function might return different results for the same input due to factors like random values or changing data. There is no explicit syntax to declare a function as `NOT DETERMINISTIC`; it is the default behavior if you don't specify `DETERMINISTIC`.

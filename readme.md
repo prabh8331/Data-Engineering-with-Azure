@@ -86,3 +86,7 @@ DP203 certificate
 
 after course can cover devops part
 
+data modeling and data warehousing, datalakes, iceberge hudi
+kubernities , devops etc.
+
+in interview asking the ETL part, data processing part with respect to databricks 
