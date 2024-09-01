@@ -15,6 +15,7 @@ https://youtu.be/8JJ101D3knE
 
 Quick setting up:
 
+1. Windows with github and 2. Linux with github
 Install git on windows:
 https://git-scm.com/
 
@@ -36,6 +37,14 @@ go to github>settings>ssh and GPG keys > new ssh key > paste the key
 ssh -T git@github.com
 
 ```
+2. Windows with Linux
+
+```bash
+
+
+```
+
+
 
 
 
