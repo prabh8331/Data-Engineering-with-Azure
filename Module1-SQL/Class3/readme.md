@@ -79,3 +79,29 @@ output table
 |    3 | Leaf Node  |
 |    8 | Root Node  |
 +------+------------+
+
+
+
+
+
+In SQL, conditions like `1=1` and `1=0` are often used as placeholder conditions or for specific logical control in queries.
+
+### `1=1` in SQL
+- **Use Case:** 
+  - **Placeholder Condition:** `WHERE 1=1` is commonly used as a placeholder in dynamically generated SQL queries. For instance, when building queries programmatically, `1=1` allows you to easily append additional conditions using `AND` without worrying about whether the `WHERE` clause already exists.
+  - **Example in Sqoop:**
+    ```sql
+    SELECT * FROM employees WHERE 1=1 AND department='HR';
+    ```
+    Here, `1=1` makes it easy to add more conditions programmatically without modifying the basic query structure.
+
+### `1=0` in SQL
+- **Use Case:**
+  - **Condition That Always Fails:** `WHERE 1=0` is used when you want to return no rows, often for testing or to create a table structure without copying data.
+  - **Example:**
+    ```sql
+    CREATE TABLE temp AS SELECT * FROM employees WHERE 1=0;
+    ```
+    This query creates a `temp` table with the same structure as `employees` but without any data.
+
+These conditions are useful in query building, testing, and controlling the flow of data selection, especially in tools like Sqoop where SQL is dynamically constructed.

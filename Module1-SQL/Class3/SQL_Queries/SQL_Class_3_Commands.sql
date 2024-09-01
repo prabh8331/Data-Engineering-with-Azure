@@ -368,6 +368,7 @@ o.*, c.*
 from orders o
 left join customers c on o.cust_id = c.cust_id
 WHERE 1=1
+-- WHERE 1=0 -- this will output always no rows because 1=0 always return false 
 ;
 
 -- Right Join
