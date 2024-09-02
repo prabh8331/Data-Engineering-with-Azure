@@ -70,6 +70,10 @@ MySQL workbench setup windows-
 https://youtu.be/8JJ101D3knE
 
 
+create GCP account
+https://www.youtube.com/watch?v=m5hwU0jD0qc
+
+
 
 
 what interview qns others are getting:
