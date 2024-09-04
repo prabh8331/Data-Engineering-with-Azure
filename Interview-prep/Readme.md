@@ -37,6 +37,9 @@ Could you explain the concepts of transformations and actions in PySpark DataFra
 
 
 
+
+
+
 How do you invoke one notebook from another in Databricks?
 What methods do you use to access a variable from one notebook in another?
 How do you exit a notebook while returning output data in Databricks?
