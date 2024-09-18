@@ -303,8 +303,6 @@ create table employees
     emp_id int,
     salary int,
     dept_name VARCHAR(30)
-
-
 );
 
 insert into employees values (1, 10000, 'Software');
