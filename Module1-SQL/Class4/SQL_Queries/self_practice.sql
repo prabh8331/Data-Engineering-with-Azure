@@ -162,3 +162,16 @@ select * from (select *
 from employees) a
 where rownum_sal=1
 ;
+
+select * from (SELECT *
+,DENSE_RANK() OVER(PARTITION BY dept_name ORDER BY salary desc) drank_sal
+from employees) temp
+where drank_sal=1
+
+;
+
+
+
+
+-- Lead and  lag
+
