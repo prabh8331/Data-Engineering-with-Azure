@@ -175,3 +175,7 @@ where drank_sal=1
 
 -- Lead and  lag
 
+select *, lag(sales_amount, 1) over(ORDER BY sales_date) as per_day_sales from daily_sales;
+
+select *, COALESCE(lag(sales_amount, 1) over(ORDER BY sales_date),0) as per_day_sales from daily_sales;
+
