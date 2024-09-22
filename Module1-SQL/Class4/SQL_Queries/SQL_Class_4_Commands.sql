@@ -556,8 +556,6 @@ create table amazon_employees(
     emp_name varchar(20),
     dept_id int,
     salary int
-
-
 );
 
 insert into amazon_employees values (1, 'Shashank', 100, 10000);
@@ -602,7 +600,6 @@ with
         group by
             dept_id
     )
-
 select d.dept_name, tmp.total_salary
 from
     dept_wise_salary tmp
@@ -637,7 +634,6 @@ with recursive
         where
             n < 10
     )
-
 select * from generate_numbers;
 
 create table emp_mgr (

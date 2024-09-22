@@ -172,10 +172,117 @@ where drank_sal=1
 
 
 
-
+use mydatabase;
 -- Lead and  lag
 
 select *, lag(sales_amount, 1) over(ORDER BY sales_date) as per_day_sales from daily_sales;
 
+select *, lag(sales_amount, 1,0) over(ORDER BY sales_date) as per_day_sales from daily_sales;
+
 select *, COALESCE(lag(sales_amount, 1) over(ORDER BY sales_date),0) as per_day_sales from daily_sales;
 
+
+
+
+
+-- Frame Clause in window function
+
+select *, sum(sales_amount) over (
+        order by
+            sales_date range between interval '6' day preceding
+            and current row
+    ) as running_weekly_sum
+from daily_sales;
+
+
+
+
+
+
+-- Common table expression
+
+-- RECURSIVE CTE
+-- Write a query to generate numbers from 1 to 10 in Sql
+use mydatabase;
+with RECURSIVE cte_num_gen as (
+    select 1 as n 
+    UNION all
+    SELECT n+1 
+    from cte_num_gen where n<15)
+select * from cte_num_gen;
+
+
+-- for our CTO 'Asha' present her org chart
+
+with RECURSIVE emp_hir as (
+    select id, name, manager_id, designation 
+    from emp_mgr where id=7
+    union all
+    select em.id, em.name, em.manager_id, em.designation
+    from emp_hir as eh inner join emp_mgr as em on (em.manager_id=eh.id)
+)
+select id, name, manager_id, designation from emp_hir;
+
+
+
+with RECURSIVE emp_hir as (
+    select id, name, manager_id, designation, 1 as lvl
+    from emp_mgr where id=7
+    union all
+    select em.id, em.name, em.manager_id, em.designation, lvl+1
+    from emp_hir as eh inner join emp_mgr as em on (em.manager_id=eh.id)
+)
+select id, name, manager_id, designation,lvl from emp_hir;
+
+
+
+
+
+
+
+
+
+
+--- Views, when we don't want to expose the entire table to some team, because this table contains senstive info and this team don't even need that info
+-- in this case we will create a views 
+
+-- views are virtual table-- they don't contains the data but only the logic
+
+
+select * from employees;
+
+create view employee_data_for_finance as
+select emp_id, dept_name, salary
+from employees;
+
+
+select * from employee_data_for_finance;
+
+
+
+
+-- Indexing
+
+-- Indexing in databases involves creating a data structure that improves the speed of data retrival operations on a database table. 
+-- indexes are used to quickly locate data without having to search every row in a table each time a dataase table is accessed
+
+
+clusterd and non clusterd intex
+primary index
+
+what is --> maratlized view  -- will not have latest data
+
+how will i generate consucutive dates--> use recursive cte
+
+pivot -- when column values bewcome column names, eg. city values become columns 
+
+-- Query optimization
+
+-- avoid union use union all , because union will start deduplicaiton 
+-- indexing 
+-- select *
+-- eximinate unnecessry table scaning using exit not exist 
+-- avoid unnecessary distict columns
+-- avoid having
+-- performance based on 2 factor data size processed - if unnecessry data scaning is avoided 
+    -- optimiztion operation better
