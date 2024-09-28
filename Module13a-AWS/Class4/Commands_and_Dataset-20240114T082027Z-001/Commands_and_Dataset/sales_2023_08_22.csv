@@ -1,0 +1,21 @@
+Region,Product_ID,Product_Name,Units_Sold,Price_per_Unit,Total_Sale
+North,1001,Widget A,5,10.99,54.95
+South,1002,Widget B,3,12.50,37.50
+East,1003,Widget C,10,7.49,74.90
+West,1004,Widget D,4,15.00,60.00
+North,1005,Widget E,2,25.00,50.00
+South,1006,Widget F,6,8.99,53.94
+East,1007,Widget G,8,9.49,75.92
+West,1008,Widget H,7,5.99,41.93
+North,1009,Widget I,3,22.50,67.50
+South,1010,Widget J,9,10.50,94.50
+East,1011,Widget K,1,30.00,30.00
+West,1012,Widget L,4,17.50,70.00
+North,1013,Widget M,2,20.00,40.00
+South,1014,Widget N,6,6.49,38.94
+East,1015,Widget O,7,12.99,90.93
+West,1016,Widget P,5,11.49,57.45
+North,1017,Widget Q,10,7.00,70.00
+South,1018,Widget R,3,15.50,46.50
+East,1019,Widget S,9,8.00,72.00
+West,1020,Widget T,4,19.99,79.96

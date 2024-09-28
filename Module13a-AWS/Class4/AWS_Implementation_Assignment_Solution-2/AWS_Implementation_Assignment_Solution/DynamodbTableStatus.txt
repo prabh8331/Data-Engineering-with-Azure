@@ -1,0 +1,86 @@
+Dynamodb Status before Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '41'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-05-03 18:08:49'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '2'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P3'}, 'timestamp': {'S': '2023-09-25 03:50:19'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+Operation/Event --------> {'event_type': 'product_added', 'product': {'product_id': 'P3', 'product_name': 'Headphones', 'quantity': 36, 'timestamp': '2023-09-28 16:04:58'}}
+Dynamodb Status after Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '41'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-05-03 18:08:49'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '36'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P3'}, 'timestamp': {'S': '2023-09-28 16:04:58'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+
+
+
+Operation/Event --------> {'event_type': 'product_added', 'product': {'product_id': 'P8', 'product_name': 'Tablet', 'quantity': 50, 'timestamp': '2022-04-14 07:52:42'}}
+Dynamodb Status after Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '50'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-04-14 07:52:42'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '36'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P3'}, 'timestamp': {'S': '2023-09-28 16:04:58'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+
+
+
+Operation/Event --------> {'event_type': 'product_added', 'product': {'product_id': 'P9', 'product_name': 'Headphones', 'quantity': 46, 'timestamp': '2023-12-26 05:19:05'}}
+Dynamodb Status after Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '50'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-04-14 07:52:42'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '36'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P3'}, 'timestamp': {'S': '2023-09-28 16:04:58'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '46'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P9'}, 'timestamp': {'S': '2023-12-26 05:19:05'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+
+
+
+Operation/Event --------> {'event_type': 'product_removed', 'product': {'product_id': 'P3', 'product_name': 'Charger', 'quantity': 48, 'timestamp': '2022-09-19 15:00:50'}}
+Dynamodb Status after Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '50'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-04-14 07:52:42'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '46'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P9'}, 'timestamp': {'S': '2023-12-26 05:19:05'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+
+
+
+Operation/Event --------> {'event_type': 'product_removed', 'product': {'product_id': 'P3', 'product_name': 'Headphones', 'quantity': 36, 'timestamp': '2022-10-08 00:25:31'}}
+Dynamodb Status after Operation....
+----------------------------------
+               {'quantity': {'N': '31'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P10'}, 'timestamp': {'S': '2023-09-11 12:45:04'}}
+               {'quantity': {'N': '50'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P8'}, 'timestamp': {'S': '2022-04-14 07:52:42'}}
+               {'quantity': {'N': '45'}, 'product_name': {'S': 'Tablet'}, 'product_id': {'S': 'P2'}, 'timestamp': {'S': '2023-04-23 01:38:57'}}
+               {'quantity': {'N': '40'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P7'}, 'timestamp': {'S': '2022-03-05 12:42:54'}}
+               {'quantity': {'N': '46'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P9'}, 'timestamp': {'S': '2023-12-26 05:19:05'}}
+               {'quantity': {'N': '18'}, 'product_name': {'S': 'Charger'}, 'product_id': {'S': 'P1'}, 'timestamp': {'S': '2022-01-22 13:09:13'}}
+               {'quantity': {'N': '25'}, 'product_name': {'S': 'Headphones'}, 'product_id': {'S': 'P4'}, 'timestamp': {'S': '2022-07-05 05:21:55'}}
+----------------------------------
+
+
+
+Operation/Event --------> {'event_type': 'product_removed', 'product': {'product_id': 'P4', 'product_name': 'Tablet', 'quantity': 19, 'timestamp': '2022-11-20 19:14:34'}}
+
+Script stopped by manual intervention!
+
+Process finished with exit code 0

@@ -1,0 +1,6 @@
+Commands to be followed to zip lambda code
+===========================================
+
+cd lambda_with_no_dependency
+
+zip lambda_code_zipped.zip lambda_function.py

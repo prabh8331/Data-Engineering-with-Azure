@@ -1,0 +1,12 @@
+Commands to be followed to zip lambda code
+===========================================
+
+cd lambda_with_dependency
+
+pip3 install --target ./package requests
+
+zip -r ../lambda_code_dep_zipped.zip .
+
+cd ..
+
+zip lambda_code_dep_zipped.zip lambda_function.py
