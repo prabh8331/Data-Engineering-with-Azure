@@ -136,7 +136,3 @@
 
 - **Correct Answer**: **All of the above**  
   - **Reasoning**: Access control to S3 buckets can be managed through bucket policies, IAM roles, and Access Control Lists (ACLs), depending on your needs.
-
----
-
-This refined version provides more detailed reasoning behind each correct answer, making it easier to understand the key AWS concepts.
