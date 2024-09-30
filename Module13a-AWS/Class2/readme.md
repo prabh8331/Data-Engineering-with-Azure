@@ -106,3 +106,13 @@ but we will crate 2 consumers of lambda, one process only order and one only pay
 
 ### S3 to SNS 
 
+create a bucket 
+in bucket go to properties , then event notification, then create a event notification and keep destination as sns and select above sns
+
+now add a folder to the bucket , now we will be able to get the notificiton on mail, which will be in json format
+
+
+
+
+
+add message progrmatically in sns topic 
