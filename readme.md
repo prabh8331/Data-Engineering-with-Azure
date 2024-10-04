@@ -4,6 +4,7 @@ Pre-Read Material-
 
 Python
 
+
 Linux
 
 Docker Fundamentals & Installation- 
