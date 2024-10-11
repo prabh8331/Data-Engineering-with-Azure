@@ -6,10 +6,10 @@ def lambda_handler(event, context):
     print("Trigger Received !!!")
     a=2
     b=3
-    print("sum of a and b= " a+b)
+    print("sum of a and b= ", a+b)
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
+        'body': json.dumps('Hello from Lambda!__ this is test')
     }
 
