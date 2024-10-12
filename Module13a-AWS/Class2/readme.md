@@ -78,6 +78,9 @@ ojective completed from above 2 things 1. how boto3 works , and 2. how to read d
 
 
 
+
+
+
 ### SNS
 
 it is messaging Q
