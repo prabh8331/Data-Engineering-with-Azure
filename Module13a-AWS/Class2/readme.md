@@ -8,13 +8,30 @@ author from scratch
 function name =  s3_to_lambda_read
 runtime = python 3.11
 
-configuraiton = timeout = 1 min
+Increasing the timeout of lambda from 3 sec to 1 mins because reading file will take time
+Configuration ---> General configuration --> Timeout = 1 min
+
+code ---> add layer = 
+AWS layers
+AWS layer = Pandas
 
 
+now because we are reading the data from s3 using lambda funciton we need to provide the premssions using role
+Configuration ---> Premissions --> role name (click the link)
+Attach premission--> Attach Policy--> AmazoneS3FullAccess--> 
+
+
+
+
+create a new bucket , buket name = s3-to-lambda-read
 connect above with the event notificatioin from s3 bucket 
 
-add triger = s3 bucket 
-event type = crate 
+add event notification in s3 buckets = Properties --> event notificaiton 
+Event name = s3-to-lambda-read
+suffix = .csv
+Event type = all object create events
+Destination= Lambda function  = s3-to-lambda-read
+
 
 
 now we will add the files to the s3 bucket then read that file using panda and print content of it
@@ -44,16 +61,17 @@ def lambda_handler(event, context):
     print(data)
 
 ```
+
+now finaly upload the .csv file, 
+Lambda --> Moniter --> View cloudwatch logs = here see the logs 
+
+
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
 
 
 
-
-now because we are reading the data from s3 using lambda funciton we need to provide the premssions using role
-
 ojective completed from above 2 things 1. how boto3 works , and 2. how to read different attributes of events
 
-this is how we can make things event driven 
 
 
 
@@ -106,7 +124,7 @@ but we will crate 2 consumers of lambda, one process only order and one only pay
 
 ### S3 to SNS 
 
-create a bucket 
+Create a bucket 
 in bucket go to properties , then event notification, then create a event notification and keep destination as sns and select above sns
 
 now add a folder to the bucket , now we will be able to get the notificiton on mail, which will be in json format
