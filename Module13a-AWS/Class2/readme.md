@@ -173,5 +173,30 @@ def lambda_handler(event, context):
 ```
 
 
+
+
+
+
+
 ### SQS
+
+here first messages are sent to the SQS topic, 
+then consumer has to pool these messages in batch , batch length can me 10 etc.
+
+
+
+1. from lambda generate messages to SQS, then there is a auto triger to lambda, once SQL recieve the messages it will send it to lambda
+   this is automated trigring 
+
+2. from lambda generate messages to SQL, then manually pool from other lamda
+    this is manual polling 
+
+suggested way is the second one where we are polling and then deleting the message because we have more contorl in that way
+
+
+
+
+
+### Event Bridge 
+
 
