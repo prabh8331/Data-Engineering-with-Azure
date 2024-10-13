@@ -227,3 +227,20 @@ shutdown the piplines you may chaged
 
 
 
+
+
+1. when building pipeline - processing data b/w different systems 
+    what will happen in case of faliure if redsift cluster went down, lets say total records are 1000 and only 500 got processed 
+
+    how to avoid the dubicate processing 
+    1. need to provide checks by ourself
+    2. we can have a external metastore, 
+    3. syspark we can use stat managment 
+
+2. can we write test cases , for the code coverage  
+    pytest can used 
+    sonarqube
+    sonarqube integrated with github actions 
+
+3. 
+
