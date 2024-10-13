@@ -199,4 +199,31 @@ suggested way is the second one where we are polling and then deleting the messa
 
 ### Event Bridge 
 
+1. Event brigde schedule 
+in above sqs, we published 100 msgs, and by manually trigring lambda we read 10 mes
+now using event bridge we are creating a reoccuring thing which will triger lambda, in every 1 mins
+
+we will use scheduled event bridge 
+do not give flexible time window
+give cron synax 
+
+disable once used 
+
+
+## Event Bridgle pipe
+
+Lambda = print event_bridge_pipe data
+
+pipe hase 
+
+1. Source = SQS
+2. FIltering = give filter condition 
+3. Enrichment = to change the input after filtering (we can remove it also)
+4. Target = lambda 
+
+
+shutdown the piplines you may chaged
+
+
+
 
