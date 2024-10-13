@@ -79,7 +79,7 @@ ojective completed from above 2 things 1. how boto3 works , and 2. how to read d
 
 
 
-
+need to revisit the following again: 
 
 ### SNS
 
