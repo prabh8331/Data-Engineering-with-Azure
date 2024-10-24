@@ -166,8 +166,11 @@ uplaod the sales data input folder
 
 revisit: this
 uploadig the sales data in the partaion format
-create a new folder = partationed data
-inside create a another folder = 
+create a new folder = partationed_data
+inside create a another folder =  country=USA
+
+
+
 
 
 Amazon Athena --> Query editor --> settings --> Manage --> 
@@ -201,6 +204,14 @@ need to explore these , can provide partaion and all, but for partation in back 
 
 even when we setup the hive , we need to setup some metadatastore 
 in athena we are using data catalog
+
+
+
+
+now if we are using partiioned run:  
+
+MSCK REPAIR TABLE sales_tb_partitioned; 
+this command will add the partioned
 
 
 
